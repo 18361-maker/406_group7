@@ -80,7 +80,7 @@ def login_user(username, password):
 # ---------- APP ----------
 def main():
     add_custom_css()
-    st.title("💸 แอพรายรับรายจ่าย (โทนพาสเทล)")
+    st.title("💸 แอพรายรับรายจ่าย")
 
     menu = ["🔑 Login", "📝 SignUp"]
     choice = st.sidebar.selectbox("เมนู", menu)
