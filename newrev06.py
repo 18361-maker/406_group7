@@ -161,6 +161,7 @@ def dashboard_page():
     with col2:
         if st.button("- รายจ่าย"):
             st.session_state["page"] = "add_expense"
+    st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
 
 def add_income_page():
     st.title("➕ บันทึกรายรับ")
