@@ -115,10 +115,33 @@ def dashboard_page():
     total_expense_y = sum([r["amount"] for r in records_y["expense"]])
     saving_y = total_income_y * 0.3
     balance_y = total_income_y * 0.7 - total_expense_y
+
+    # -------------------
+    # วันนี้
+    # -------------------
+    st.markdown("---")
+    records_t = st.session_state["records"].get(username, {}).get(str(today), {"income": [], "expense": []})
+    total_income_t = sum([r["amount"] for r in records_t["income"]])
+    total_expense_t = sum([r["amount"] for r in records_t["expense"]])
+    saving_t = total_income_t * 0.3
+    balance_t = total_income_t * 0.7 - total_expense_t
+
+    st.subheader("📅 วันนี้")
+
+    # 👉 เพิ่มกราฟวันนี้
+    fig, ax = plt.subplots()
+    ax.bar(["Income", "Expense"], [total_income_t, total_expense_t], color=["#FFB6C1", "#999999"])
+    st.pyplot(fig)
+
+    st.write(f"💰 รายรับ: {total_income_t}")
+    st.write(f"📉 รายจ่าย: {total_expense_t}")
+    st.write(f"🏦 เงินเก็บ (30%): {saving_t}")
+    st.write(f"✅ คงเหลือจากเงินใช้จ่าย: {balance_t}")
+
     
     st.subheader("📅 เมื่อวาน")
     fig, ax = plt.subplots()
-    ax.bar(["รายรับ", "รายจ่าย"], [total_income_y, total_expense_y], color=["#FFB6C1", "#999999"])
+    ax.bar(["Income", "Expense"], [total_income_y, total_expense_y], color=["#FFB6C1", "#999999"])
     st.pyplot(fig)
     
     st.write(f"💰 รายรับ: {total_income_y}")
