@@ -148,22 +148,6 @@ def dashboard_page():
     st.write(f"📉 รายจ่าย: {total_expense_y}")
     st.write(f"🏦 เงินเก็บ (30%): {saving_y}")
     st.write(f"✅ คงเหลือจากเงินใช้จ่าย: {balance_y}")
-
-    # -------------------
-    # วันนี้
-    # -------------------
-    st.markdown("---")
-    records_t = st.session_state["records"].get(username, {}).get(str(today), {"income": [], "expense": []})
-    total_income_t = sum([r["amount"] for r in records_t["income"]])
-    total_expense_t = sum([r["amount"] for r in records_t["expense"]])
-    saving_t = total_income_t * 0.3
-    balance_t = total_income_t * 0.7 - total_expense_t
-
-    st.subheader("📅 วันนี้")
-    st.write(f"💰 รายรับ: {total_income_t}")
-    st.write(f"📉 รายจ่าย: {total_expense_t}")
-    st.write(f"🏦 เงินเก็บ (30%): {saving_t}")
-    st.write(f"✅ คงเหลือจากเงินใช้จ่าย: {balance_t}")
     
     # -------------------
     # ปุ่มเพิ่มข้อมูล
