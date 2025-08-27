@@ -83,6 +83,7 @@ def login_page():
                 st.success("เข้าสู่ระบบสำเร็จ ✅")
             else:
                 st.error("Username หรือ Password ไม่ถูกต้อง ❌")
+        st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
 
     with tab2:
         new_user = st.text_input("New Username", key="new_user")
@@ -179,6 +180,7 @@ def add_income_page():
         save_data()
         st.success("บันทึกสำเร็จ ✅")
         st.session_state["page"] = "dashboard"
+    st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
 
 def add_expense_page():
     st.title("➖ บันทึกรายจ่าย")
@@ -198,6 +200,7 @@ def add_expense_page():
         save_data()
         st.success("บันทึกสำเร็จ ✅")
         st.session_state["page"] = "dashboard"
+    st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
 
 # -------------------------
 # Navigation
