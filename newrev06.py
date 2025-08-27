@@ -95,56 +95,6 @@ def login_page():
                 save_data()
                 st.success("สร้างบัญชีสำเร็จ 🎉")
 
-    # -------------------
-    # ปุ่มเพิ่มข้อมูล
-    # -------------------
-    st.markdown("---")
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("+ รายรับ"):
-            st.session_state["page"] = "add_income"
-    with col2:
-        if st.button("- รายจ่าย"):
-            st.session_state["page"] = "add_expense"
-
-def add_income_page():
-    st.title("➕ บันทึกรายรับ")
-    username = st.session_state["current_user"]
-    today = str(datetime.date.today())
-    
-    income_type = st.selectbox("ประเภท", ["เงินเดือน", "โบนัส", "อื่น ๆ"])
-    amount = st.number_input("จำนวนเงิน", min_value=0)
-    note = st.text_area("บันทึกเพิ่มเติม (ไม่บังคับ)")
-    
-    if st.button("บันทึก"):
-        if username not in st.session_state["records"]:
-            st.session_state["records"][username] = {}
-        if today not in st.session_state["records"][username]:
-            st.session_state["records"][username][today] = {"income": [], "expense": []}
-        st.session_state["records"][username][today]["income"].append({"type": income_type, "amount": amount, "note": note})
-        save_data()
-        st.success("บันทึกสำเร็จ ✅")
-        st.session_state["page"] = "dashboard"
-
-def add_expense_page():
-    st.title("➖ บันทึกรายจ่าย")
-    username = st.session_state["current_user"]
-    today = str(datetime.date.today())
-    
-    expense_type = st.selectbox("ประเภท", ["ค่าอาหาร", "ค่าเดินทาง", "ค่าน้ำ", "ค่าไฟ", "อื่น ๆ"])
-    amount = st.number_input("จำนวนเงิน", min_value=0)
-    note = st.text_area("บันทึกเพิ่มเติม (ไม่บังคับ)")
-    
-    if st.button("บันทึก"):
-        if username not in st.session_state["records"]:
-            st.session_state["records"][username] = {}
-        if today not in st.session_state["records"][username]:
-            st.session_state["records"][username][today] = {"income": [], "expense": []}
-        st.session_state["records"][username][today]["expense"].append({"type": expense_type, "amount": amount, "note": note})
-        save_data()
-        st.success("บันทึกสำเร็จ ✅")
-        st.session_state["page"] = "dashboard"
-
 def dashboard_page():
     st.title("📊 สรุปรายรับ-รายจ่าย")
     
@@ -198,6 +148,56 @@ def dashboard_page():
     st.write(f"📉 รายจ่าย: {total_expense_y}")
     st.write(f"🏦 เงินเก็บ (30%): {saving_y}")
     st.write(f"✅ คงเหลือจากเงินใช้จ่าย: {balance_y}")
+
+    # -------------------
+    # ปุ่มเพิ่มข้อมูล
+    # -------------------
+    st.markdown("---")
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("+ รายรับ"):
+            st.session_state["page"] = "add_income"
+    with col2:
+        if st.button("- รายจ่าย"):
+            st.session_state["page"] = "add_expense"
+
+def add_income_page():
+    st.title("➕ บันทึกรายรับ")
+    username = st.session_state["current_user"]
+    today = str(datetime.date.today())
+    
+    income_type = st.selectbox("ประเภท", ["เงินเดือน", "โบนัส", "อื่น ๆ"])
+    amount = st.number_input("จำนวนเงิน", min_value=0)
+    note = st.text_area("บันทึกเพิ่มเติม (ไม่บังคับ)")
+    
+    if st.button("บันทึก"):
+        if username not in st.session_state["records"]:
+            st.session_state["records"][username] = {}
+        if today not in st.session_state["records"][username]:
+            st.session_state["records"][username][today] = {"income": [], "expense": []}
+        st.session_state["records"][username][today]["income"].append({"type": income_type, "amount": amount, "note": note})
+        save_data()
+        st.success("บันทึกสำเร็จ ✅")
+        st.session_state["page"] = "dashboard"
+
+def add_expense_page():
+    st.title("➖ บันทึกรายจ่าย")
+    username = st.session_state["current_user"]
+    today = str(datetime.date.today())
+    
+    expense_type = st.selectbox("ประเภท", ["ค่าอาหาร", "ค่าเดินทาง", "ค่าน้ำ", "ค่าไฟ", "อื่น ๆ"])
+    amount = st.number_input("จำนวนเงิน", min_value=0)
+    note = st.text_area("บันทึกเพิ่มเติม (ไม่บังคับ)")
+    
+    if st.button("บันทึก"):
+        if username not in st.session_state["records"]:
+            st.session_state["records"][username] = {}
+        if today not in st.session_state["records"][username]:
+            st.session_state["records"][username][today] = {"income": [], "expense": []}
+        st.session_state["records"][username][today]["expense"].append({"type": expense_type, "amount": amount, "note": note})
+        save_data()
+        st.success("บันทึกสำเร็จ ✅")
+        st.session_state["page"] = "dashboard"
 
 # -------------------------
 # Navigation
