@@ -182,6 +182,7 @@ def add_income_page():
         st.success("บันทึกสำเร็จ ✅")
         st.session_state["page"] = "dashboard"
     st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
+    st.caption("ℹ️ หมายเหตุ ไม่ต้องใส่เครื่องหมายจุลภาค ( , )")
 
 def add_expense_page():
     st.title("➖ บันทึกรายจ่าย")
@@ -202,6 +203,7 @@ def add_expense_page():
         st.success("บันทึกสำเร็จ ✅")
         st.session_state["page"] = "dashboard"
     st.caption("ℹ️ โปรดคลิกปุ่ม 2 รอบหากไม่รีเฟรชอัตโนมัติ")
+    st.caption("ℹ️ หมายเหตุ ไม่ต้องใส่เครื่องหมายจุลภาค ( , )")
 
 # -------------------------
 # Navigation
