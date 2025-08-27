@@ -77,7 +77,7 @@ def dashboard_page():
     
     # กราฟ
     fig, ax = plt.subplots()
-    ax.bar(["รายรับ", "รายจ่าย"], [total_income, total_expense], color=["#d63384", "#999999"])
+    ax.bar(["Income", "Expense"], [total_income, total_expense], color=["#d63384", "#999999"])
     st.pyplot(fig)
     
     # สรุป
@@ -150,3 +150,4 @@ else:
     else:
         st.session_state["page"] = "dashboard"
         dashboard_page()
+
