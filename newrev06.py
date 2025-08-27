@@ -24,20 +24,20 @@ def add_custom_css():
     st.markdown(
         """
         <style>
-        /* 🌈 พื้นหลัง */
+        /* 🌈 พื้นหลังหลัก */
         .stApp {
-            background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+            background: linear-gradient(135deg, #FFFDD0 0%, #FFB6C1 100%);
         }
 
         /* 🎨 หัวข้อ */
         h1, h2, h3, .stMarkdown {
-            color: #2c003e;
+            color: #333333;
         }
 
         /* 💖 ปุ่ม */
         div.stButton > button {
-            background-color: #ff4b5c;
-            color: white;
+            background-color: #FFB6C1;
+            color: #333333;
             border-radius: 12px;
             height: 3em;
             width: 100%;
@@ -45,16 +45,17 @@ def add_custom_css():
             font-weight: bold;
         }
         div.stButton > button:hover {
-            background-color: #d63384;
-            color: #fff;
+            background-color: #FFFDD0;
+            color: #000;
         }
 
         /* 💳 การ์ดสรุป */
         .metric-card {
-            background: white;
+            background: #FFFFFF;
             padding: 15px;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+            border: 1px solid #D3D3D3;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
             margin-bottom: 10px;
             font-size: 18px;
         }
@@ -79,7 +80,7 @@ def login_user(username, password):
 # ---------- APP ----------
 def main():
     add_custom_css()
-    st.title("💸 แอพรายรับรายจ่าย (สดใสเวอร์ชั่น)")
+    st.title("💸 แอพรายรับรายจ่าย (โทนพาสเทล)")
 
     menu = ["🔑 Login", "📝 SignUp"]
     choice = st.sidebar.selectbox("เมนู", menu)
@@ -141,10 +142,11 @@ def app_dashboard(username):
         # --- Chart ---
         st.subheader("📈 กราฟสรุปวันนี้")
         fig, ax = plt.subplots()
-        colors = ["#FF6F91", "#FF9671", "#FFC75F", "#F9F871"]
-        ax.bar(["รายรับ", "รายจ่าย", "เงินเก็บ", "คงเหลือ"],
+        colors = ["#FFB6C1", "#D3D3D3", "#FFFDD0", "#FFDAB9"]
+        ax.bar(["Income", "Expense", "Savings", "Total"],
                [total_income_today, total_expense_today, total_saving_today, balance_today],
                color=colors)
+        ax.set_facecolor("#FFFFFF")
         st.pyplot(fig)
 
 if __name__ == "__main__":
